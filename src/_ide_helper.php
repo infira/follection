@@ -80,4 +80,17 @@ class Collection
     {
         /** @see \Infira\Collection\extensions\MergeOnly::mergeOnly() */;
     }
+
+
+    /**
+     * zips collection using own keys and values
+     *
+     * @template TZipValue
+     *
+     * @return static<int, static<int, TValue|TZipValue>>
+     */
+    public function zipSelf(): static
+    {
+        /** @see \Infira\Collection\extensions\ZipSelf::zipSelf() */;
+    }
 }

@@ -56,4 +56,12 @@ class CollectionMacros
             return new static(array_merge(array_flip($keys), \Illuminate\Support\Arr::only($items, $keys)));
         };
     }
+
+
+    public static function zipSelf(): \Closure
+    {
+        return function () {
+            return $this->keys()->zip($this->values());
+        };
+    }
 }
