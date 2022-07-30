@@ -7,10 +7,14 @@ namespace Infira\Collection;
  */
 class CollectionMacros
 {
-    public static function mapIntoCollection(): \Closure
+    public static function mapCollect(): \Closure
     {
-        return function () {
-            return $this->mapInto(\Illuminate\Support\Collection::class);
+        return function ($callback = null) {
+            if (!$callback) {
+                return $this->mapInto(\Illuminate\Support\Collection::class);
+            }
+
+            return $this->map(fn($value, $key) => $callback(new \Illuminate\Support\Collection($value, $key)));
         };
     }
 
@@ -23,11 +27,31 @@ class CollectionMacros
     }
 
 
+    public static function mapWith(): \Closure
+    {
+        return function ($class, $callback = null) {
+            if (!$callback) {
+                return $this->mapInto($class);
+            }
+
+            return $this->map(fn($value, $key) => $callback(new $class($value, $key)));
+        };
+    }
+
+
     public static function mergeOnly(): \Closure
     {
-        return function ($items) {
+        return function ($items, $keys = null) {
             $items = $this->getArrayableItems($items);
-            $keys = array_keys($items);
+            if ($keys === null) {
+                $keys = array_keys($items);
+            }
+            else {
+                if ($keys instanceof \Illuminate\Support\Enumerable) {
+                    $keys = $keys->all();
+                }
+                $keys = is_array($keys) ? $keys : array_slice(func_get_args(), 1);
+            }
 
             return new static(array_merge(array_flip($keys), \Illuminate\Support\Arr::only($items, $keys)));
         };
