@@ -26,13 +26,13 @@ class Collection
      * @return static<TKey, TMapValue>
      * @throws \ReflectionException
      */
-    public function inject($callback, $method = 'map'): static
+    public function inject(callable $callback, string $method = 'map')
     {
         /** @see \Infira\Collection\extensions\Inject::inject() */;
     }
 
 
-    public function toInjectable(): static
+    public function toInjectable(): \Infira\Collection\InjectableCollection
     {
         /** @see \Infira\Collection\extensions\Inject::toInjectable() */;
     }
@@ -51,7 +51,7 @@ class Collection
      * @see \Illuminate\Support\Collection::map()
      * @see \Illuminate\Support\Collection::mapInto()
      */
-    public function mapCollect($callback = null): static
+    public function mapCollect(callable $callback = null)
     {
         /** @see \Infira\Collection\extensions\MapCollect::mapCollect() */;
     }
@@ -80,7 +80,7 @@ class Collection
      * @see \Illuminate\Support\Collection::map()
      * @see \Illuminate\Support\Collection::mapInto()
      */
-    public function mapSelf($callback = null): static
+    public function mapSelf(callable $callback = null)
     {
         /** @see \Infira\Collection\extensions\MapSelf::mapSelf() */;
     }
@@ -102,7 +102,7 @@ class Collection
      * @see \Illuminate\Support\Collection::map()
      * @see \Illuminate\Support\Collection::mapInto()
      */
-    public function mapWith($class, $callback = null): static
+    public function mapWith(string $class, callable $callback = null)
     {
         /** @see \Infira\Collection\extensions\MapWith::mapWith() */;
     }
@@ -117,7 +117,7 @@ class Collection
      * @see \Illuminate\Support\Collection::only()
      * @see \Illuminate\Support\Collection::merge()
      */
-    public function mergeOnly($items, $keys = null): static
+    public function mergeOnly($items, array $keys = null)
     {
         /** @see \Infira\Collection\extensions\MergeOnly::mergeOnly() */;
     }
@@ -133,7 +133,7 @@ class Collection
      * @example rename('from-key','to-key')
      * @example rename(['from-key-1'=>'to-key-1', 'from-key-2'=>'to-key-2'])
      */
-    public function rename($from, $to = null): static
+    public function rename($from, $to = null)
     {
         /** @see \Infira\Collection\extensions\Rename::rename() */;
     }
@@ -146,7 +146,7 @@ class Collection
      *
      * @return static<int, static<int, TValue|TZipValue>>
      */
-    public function zipSelf(): static
+    public function zipSelf()
     {
         /** @see \Infira\Collection\extensions\ZipSelf::zipSelf() */;
     }

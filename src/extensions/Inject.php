@@ -9,39 +9,6 @@ namespace Infira\Collection\extensions;
  */
 trait Inject
 {
-    private function _makeInjectable(callable $callback): callable
-    {
-        $ref = new \ReflectionFunction($callback);
-        $types = array_map(function (\ReflectionParameter $p) {
-            return $p->getType()->getName();
-        }, $ref->getParameters());
-
-        $cast = static function ($params) use ($types): array {
-            array_walk($params, function (&$value, $key) use ($types) {
-                $type = $types[$key];
-                if (!in_array($type, getPHPBuiltInTypes(), true)) {
-                    $value = new $type($value);
-                }
-            }, $params);
-
-            return $params;
-        };
-
-        return fn(...$params) => $callback(...$cast($params));
-    }
-
-    private function _makeInjectableIf(mixed $callback): mixed
-    {
-        if (is_array($callback)) {
-            return array_map([$this, '_makeInjectableIf'], $callback);
-        }
-        if (!is_callable($callback)) {
-            return $callback;
-        }
-
-        return $this->_makeInjectable($callback);
-    }
-
     /**
      * Inject $callable value type when iterating collection using $method
      * It works similar to mapInto but instead of doing $collection->mapInto(MyClass)->map(fn(Collection $value) => $value->....())
@@ -57,7 +24,7 @@ trait Inject
      */
     public function inject(callable $callback, string $method = 'map')
     {
-        return $this->$method($this->_makeInjectable($callback));
+        return $this->$method(\Infira\Collection\helpers\InjectableHelper::make($callback));
     }
 
     public function toInjectable(): \Infira\Collection\InjectableCollection

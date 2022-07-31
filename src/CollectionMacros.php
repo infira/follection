@@ -10,7 +10,7 @@ class CollectionMacros
     public static function inject(): \Closure
     {
         return function ($callback, $method = 'map') {
-            return $this->$method($this->_makeInjectable($callback));
+            return $this->$method(\Infira\Collection\helpers\InjectableHelper::make($callback));
         };
     }
 
