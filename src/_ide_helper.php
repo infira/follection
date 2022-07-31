@@ -32,6 +32,12 @@ class Collection
     }
 
 
+    public function toInjectable(): static
+    {
+        /** @see \Infira\Collection\extensions\Inject::toInjectable() */;
+    }
+
+
     /**
      * Map values into Collection with optional callback
      * if $callback is null then regular mapInto(\Illuminate\Support\Collection) is called

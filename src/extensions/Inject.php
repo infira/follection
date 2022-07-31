@@ -59,4 +59,9 @@ trait Inject
     {
         return $this->$method($this->_makeInjectable($callback));
     }
+
+    public function toInjectable(): \Infira\Collection\InjectableCollection
+    {
+        return $this->pipeInto(\Infira\Collection\InjectableCollection::class);
+    }
 }

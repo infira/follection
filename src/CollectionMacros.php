@@ -15,6 +15,14 @@ class CollectionMacros
     }
 
 
+    public static function toInjectable(): \Closure
+    {
+        return function () {
+            return $this->pipeInto(\Infira\Collection\InjectableCollection::class);
+        };
+    }
+
+
     public static function mapCollect(): \Closure
     {
         return function ($callback = null) {
