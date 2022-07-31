@@ -7,6 +7,22 @@ namespace Infira\Collection;
  */
 class CollectionMacros
 {
+    public static function chain(): \Closure
+    {
+        return function ($chain) {
+            $carry = $this;
+            foreach ($chain as $method => $conditions) {
+                $conditions = \Illuminate\Support\Arr::isAssoc($conditions) ? $conditions : [$conditions];
+                foreach ($conditions as $parameters) {
+                    $carry = $carry->$method(...$parameters);
+                }
+            }
+
+            return $carry;
+        };
+    }
+
+
     public static function inject(): \Closure
     {
         return function ($callback, $method = 'map') {
