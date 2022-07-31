@@ -14,6 +14,21 @@ namespace Illuminate\Support;
 class Collection
 {
     /**
+     * Chain methods dynamically
+     *
+     * @template TMethod - collection method
+     * @template TArguments - array
+     *
+     * @param array<TMethod, TArguments>|array<TMethod, array<TArguments>> $chain
+     * @return static
+     */
+    public function chain(array $chain)
+    {
+        /** @see \Infira\Collection\extensions\Chain::chain() */;
+    }
+
+
+    /**
      * Inject $callable value type when iterating collection using $method
      * It works similar to mapInto but instead of doing $collection->mapInto(MyClass)->map(fn(Collection $value) => $value->....())
      * you can do $collection->inject(fn(myClass $value) => $value->....())
