@@ -17,12 +17,13 @@ class Collection
      * Chain methods dynamically
      *
      * @template TMethod - collection method
-     * @template TArguments - array
+     * @template TArguments - mixed[]
      *
-     * @param array<TMethod, TArguments>|array<TMethod, array<TArguments>> $chain
+     * @param array<TMethod, TArguments>|array<TMethod, array<TArguments>>|\Illuminate\Contracts\Support\Arrayable<array<TMethod, TArguments>> $chain
      * @return static
+     * @example https://github.com/infira/laravel-collection-extensions/tree/main/src/chain.md
      */
-    public function chain(array $chain)
+    public function chain($chain)
     {
         /** @see \Infira\Collection\extensions\Chain::chain() */;
     }

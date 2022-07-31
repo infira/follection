@@ -11,8 +11,19 @@ class CollectionMacros
     {
         return function ($chain) {
             $carry = $this;
-            foreach ($chain as $method => $conditions) {
-                $conditions = \Illuminate\Support\Arr::isAssoc($conditions) ? $conditions : [$conditions];
+
+            $parsedChain = [];
+            foreach (collect($chain)->toArray() as $ck => $cv) {
+                if (is_int($ck)) {
+                    foreach ($cv as $cvk => $cvv) {
+                        $parsedChain[$cvk][] = $cvv;
+                    }
+                }
+                else {
+                    $parsedChain[$ck] = array_merge($parsedChain[$ck] ?? [], $cv);
+                }
+            }
+            foreach ($parsedChain as $method => $conditions) {
                 foreach ($conditions as $parameters) {
                     $carry = $carry->$method(...$parameters);
                 }
