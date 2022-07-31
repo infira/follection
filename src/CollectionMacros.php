@@ -7,6 +7,14 @@ namespace Infira\Collection;
  */
 class CollectionMacros
 {
+    public static function inject(): \Closure
+    {
+        return function ($callback, $method = 'map') {
+            return $this->$method($this->_makeInjectable($callback));
+        };
+    }
+
+
     public static function mapCollect(): \Closure
     {
         return function ($callback = null) {

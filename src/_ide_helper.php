@@ -14,6 +14,25 @@ namespace Illuminate\Support;
 class Collection
 {
     /**
+     * Inject $callable value type when iterating collection using $method
+     * It works similar to mapInto but instead of doing $collection->mapInto(MyClass)->map(fn(Collection $value) => $value->....())
+     * you can do $collection->inject(fn(myClass $value) => $value->....())
+     *
+     * @template TMapIntoValue
+     * @template TMapValue
+     *
+     * @param callable(TValue, TKey): TMapValue $callback
+     * @param string $method - which collection method to iterate over collection
+     * @return static<TKey, TMapValue>
+     * @throws \ReflectionException
+     */
+    public function inject($callback, $method = 'map'): static
+    {
+        /** @see \Infira\Collection\extensions\Inject::inject() */;
+    }
+
+
+    /**
      * Map values into Collection with optional callback
      * if $callback is null then regular mapInto(\Illuminate\Support\Collection) is called
      *
