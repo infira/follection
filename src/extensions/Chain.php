@@ -16,7 +16,7 @@ trait Chain
      *
      * @param array<TMethod, TArguments>|array<TMethod, array<TArguments>>|\Illuminate\Contracts\Support\Arrayable<array<TMethod, TArguments>> $chain
      * @return static
-     * @example https://github.com/infira/laravel-collection-extensions/tree/main/src/chain.md
+     * @see https://github.com/infira/laravel-collection-extensions/blob/main/docs/chain.md
      */
     public function chain($chain)
     {
