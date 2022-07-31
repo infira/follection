@@ -41,7 +41,7 @@ To filter products according to `$userPreDefinedFilters`
 
 ```php
 $carry = $collection;
-foreach ($conditions as $method => $methodParams) {
+foreach ($userPreDefinedFilters as $method => $methodParams) {
     foreach ($methodParams as $params) {
         $carry = $carry->$method(...$params);
     }
@@ -54,7 +54,7 @@ if ($carry->containsOneItem()) {
 ## Using chain extension
 
 ```php
-if ($collection->chain($conditions)->containsOneItem()) {
+if ($collection->chain($userPreDefinedFilters)->containsOneItem()) {
     //do some stuff
 }
 ```
