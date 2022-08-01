@@ -155,6 +155,19 @@ class Collection
 
 
     /**
+     * PipeInto using static::class
+     *
+     * @return static
+     * @see \Illuminate\Support\Collection::pipeInto()
+     * @see https://github.com/infira/laravel-collection-extensions/blob/main/docs/pipeIntoSelf.md
+     */
+    public function pipeIntoSelf(): static
+    {
+        /** @see \Infira\Collection\extensions\PipeIntoSelf::pipeIntoSelf() */;
+    }
+
+
+    /**
      * Rename array keys with new one while maintains array order
      *
      * @param TKey|array<TKey => TKey> $from

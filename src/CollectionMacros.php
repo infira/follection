@@ -126,6 +126,14 @@ class CollectionMacros
     }
 
 
+    public static function pipeIntoSelf(): \Closure
+    {
+        return function () {
+            return $this->pipeInto(static::class);
+        };
+    }
+
+
     public static function rename(): \Closure
     {
         return function ($from, $to = null) {
