@@ -56,6 +56,21 @@ class Collection
 
     /**
      * Map values into Collection with optional callback
+     * if is_callable($keys) then regular \Illuminate\Support\Collection->keyBy()
+     *
+     * @param array<TKey>|string|callable $keys
+     * @return static
+     * @see \Illuminate\Support\Collection::keyBy()
+     * @see https://github.com/infira/laravel-collection-extensions/blob/main/docs/keysBy.md
+     */
+    public function keysBy($keys, string $glue = '.')
+    {
+        /** @see \Infira\Collection\extensions\KeysBy::keysBy() */;
+    }
+
+
+    /**
+     * Map values into Collection with optional callback
      * if $callback is null then regular mapInto(\Illuminate\Support\Collection) is called
      *
      * @template TMapIntoValue

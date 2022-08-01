@@ -50,6 +50,23 @@ class CollectionMacros
     }
 
 
+    public static function keysBy(): \Closure
+    {
+        return function ($keys, $glue = '.') {
+            if (is_callable($keys)) {
+                return $this->keyBy($keys);
+            }
+            if (is_string($keys)) {
+                $keys = array_map('trim', explode('.', $keys));
+            }
+
+            return $this->keyBy(function ($item) use ($keys, $glue) {
+                return collect($item)->only($keys)->join($glue);
+            });
+        };
+    }
+
+
     public static function mapCollect(): \Closure
     {
         return function ($callback = null) {
