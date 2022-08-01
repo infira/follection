@@ -34,6 +34,23 @@ class CollectionMacros
     }
 
 
+    public static function copy(): \Closure
+    {
+        return function ($fromKey, $toKey = null, $default = null) {
+            if ($fromKey && $toKey !== null) {
+                return $this->put($toKey, $this->get($fromKey, $default));
+            }
+            foreach ($fromKey as $fk => $tks) {
+                foreach ((array)$tks as $tk) {
+                    $this->put($tk, $this->get($fk, $default));
+                }
+            }
+
+            return $this;
+        };
+    }
+
+
     public static function forgetBy(): \Closure
     {
         return function ($keys) {

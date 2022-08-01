@@ -30,12 +30,31 @@ class Collection
 
 
     /**
+     * Rename array keys with new one while maintains array order
+     * @template TGetDefault
+     * @template TTKey of array-key - copy to key
+     * @template TFKey of array-key - copy from key
+     *
+     * @param TFKey|array<TFKey,TTKey> $fromKey
+     * @param TTKey|null $toKey
+     * @param TGetDefault|(\Closure(): TGetDefault) $default
+     *
+     * @return static
+     * @see https://github.com/infira/laravel-collection-extensions/blob/main/docs/copy.md
+     */
+    public function copy(string|int|array $fromKey, string|int|null $toKey = null, mixed $default = null)
+    {
+        /** @see \Infira\Collection\extensions\Copy::copy() */;
+    }
+
+
+    /**
      * Remove an item from the collection by key or using callback
      *
      * @param TKey|array<array-key, TKey>|callable(TValue, TKey): bool $keys
      * @return static
      * @see \Illuminate\Support\Collection::forget()
-     * @see https://github.com/infira/laravel-collection-extensions/blob/main/docs/keysBy.md
+     * @see https://github.com/infira/laravel-collection-extensions/blob/main/docs/forgetBy.md
      */
     public function forgetBy($keys): static
     {
