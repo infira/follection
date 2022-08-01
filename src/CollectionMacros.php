@@ -34,6 +34,23 @@ class CollectionMacros
     }
 
 
+    public static function forgetBy(): \Closure
+    {
+        return function ($keys) {
+            if (is_string($keys) || is_array($keys)) {
+                return $this->forget($keys);
+            }
+            foreach ($this as $key => $value) {
+                if ($keys($value, $key)) {
+                    $this->forget($key);
+                }
+            }
+
+            return $this;
+        };
+    }
+
+
     public static function inject(): \Closure
     {
         return function ($callback, $method = 'map') {

@@ -30,6 +30,20 @@ class Collection
 
 
     /**
+     * Remove an item from the collection by key or using callback
+     *
+     * @param TKey|array<array-key, TKey>|callable(TValue, TKey): bool $keys
+     * @return static
+     * @see \Illuminate\Support\Collection::forget()
+     * @see https://github.com/infira/laravel-collection-extensions/blob/main/docs/keysBy.md
+     */
+    public function forgetBy($keys): static
+    {
+        /** @see \Infira\Collection\extensions\ForgetBy::forgetBy() */;
+    }
+
+
+    /**
      * Inject $callable value type when iterating collection using $method
      * It works similar to mapInto but instead of doing $collection->mapInto(MyClass)->map(fn(Collection $value) => $value->....())
      * you can do $collection->inject(fn(myClass $value) => $value->....())
