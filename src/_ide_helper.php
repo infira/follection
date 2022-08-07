@@ -22,11 +22,10 @@ class Collection
      * @param array<TMethod, TArguments>|array<TMethod, array<TArguments>>|\Illuminate\Contracts\Support\Arrayable<array<TMethod, TArguments>> $chain
      * @return static
      * @see https://github.com/infira/laravel-collection-extensions/blob/main/docs/chain.md
+     * @see \Infira\Collection\extensions\Chain::chain()
+     * @see \Infira\Collection\CollectionMacros::chain()
      */
-    public function chain($chain)
-    {
-        /** @see \Infira\Collection\extensions\Chain::chain() */;
-    }
+    public function chain($chain) {}
 
 
     /**
@@ -41,11 +40,11 @@ class Collection
      *
      * @return static
      * @see https://github.com/infira/laravel-collection-extensions/blob/main/docs/copy.md
+     *
+     * @see \Infira\Collection\extensions\Copy::copy()
+     * @see \Infira\Collection\CollectionMacros::copy()
      */
-    public function copy(string|int|array $fromKey, string|int|null $toKey = null, mixed $default = null)
-    {
-        /** @see \Infira\Collection\extensions\Copy::copy() */;
-    }
+    public function copy(string|int|array $fromKey, string|int|null $toKey = null, mixed $default = null) {}
 
 
     /**
@@ -55,11 +54,10 @@ class Collection
      * @return static
      * @see \Illuminate\Support\Collection::forget()
      * @see https://github.com/infira/laravel-collection-extensions/blob/main/docs/forgetBy.md
+     * @see \Infira\Collection\extensions\ForgetBy::forgetBy()
+     * @see \Infira\Collection\CollectionMacros::forgetBy()
      */
-    public function forgetBy($keys): static
-    {
-        /** @see \Infira\Collection\extensions\ForgetBy::forgetBy() */;
-    }
+    public function forgetBy($keys): static {}
 
 
     /**
@@ -74,17 +72,17 @@ class Collection
      * @param string $method - which collection method to iterate over collection
      * @return static<TKey, TMapValue>
      * @throws \ReflectionException
+     * @see \Infira\Collection\extensions\Inject::inject()
+     * @see \Infira\Collection\CollectionMacros::inject()
      */
-    public function inject(callable $callback, string $method = 'map')
-    {
-        /** @see \Infira\Collection\extensions\Inject::inject() */;
-    }
+    public function inject(callable $callback, string $method = 'map') {}
 
 
-    public function toInjectable(): \Infira\Collection\InjectableCollection
-    {
-        /** @see \Infira\Collection\extensions\Inject::toInjectable() */;
-    }
+    /**
+     * @see \Infira\Collection\extensions\Inject::toInjectable()
+     * @see \Infira\Collection\CollectionMacros::toInjectable()
+     */
+    public function toInjectable(): \Infira\Collection\InjectableCollection {}
 
 
     /**
@@ -95,11 +93,10 @@ class Collection
      * @return static
      * @see \Illuminate\Support\Collection::keyBy()
      * @see https://github.com/infira/laravel-collection-extensions/blob/main/docs/keysBy.md
+     * @see \Infira\Collection\extensions\KeysBy::keysBy()
+     * @see \Infira\Collection\CollectionMacros::keysBy()
      */
-    public function keysBy($keys, string $glue = '.')
-    {
-        /** @see \Infira\Collection\extensions\KeysBy::keysBy() */;
-    }
+    public function keysBy($keys, string $glue = '.') {}
 
 
     /**
@@ -114,11 +111,10 @@ class Collection
      * @return static<TKey, TMapValue>
      * @see \Illuminate\Support\Collection::map()
      * @see \Illuminate\Support\Collection::mapInto()
+     * @see \Infira\Collection\extensions\MapCollect::mapCollect()
+     * @see \Infira\Collection\CollectionMacros::mapCollect()
      */
-    public function mapCollect(callable $callback = null)
-    {
-        /** @see \Infira\Collection\extensions\MapCollect::mapCollect() */;
-    }
+    public function mapCollect(callable $callback = null) {}
 
 
     /**
@@ -127,11 +123,10 @@ class Collection
      * @param \Illuminate\Support\Enumerable<array-key, TKey>|array<array-key, TKey>|string $keys
      * @return static
      * @see \Illuminate\Support\Collection::only()
+     * @see \Infira\Collection\extensions\MapOnly::mapOnly()
+     * @see \Infira\Collection\CollectionMacros::mapOnly()
      */
-    public function mapOnly($keys): static
-    {
-        /** @see \Infira\Collection\extensions\MapOnly::mapOnly() */;
-    }
+    public function mapOnly($keys): static {}
 
 
     /**
@@ -143,11 +138,10 @@ class Collection
      * @return static<TKey, TValue>
      * @see \Illuminate\Support\Collection::map()
      * @see \Illuminate\Support\Collection::mapInto()
+     * @see \Infira\Collection\extensions\MapSelf::mapSelf()
+     * @see \Infira\Collection\CollectionMacros::mapSelf()
      */
-    public function mapSelf(callable $callback = null)
-    {
-        /** @see \Infira\Collection\extensions\MapSelf::mapSelf() */;
-    }
+    public function mapSelf(callable $callback = null) {}
 
 
     /**
@@ -165,11 +159,10 @@ class Collection
      * @return static<TKey, TMapValue>
      * @see \Illuminate\Support\Collection::map()
      * @see \Illuminate\Support\Collection::mapInto()
+     * @see \Infira\Collection\extensions\MapWith::mapWith()
+     * @see \Infira\Collection\CollectionMacros::mapWith()
      */
-    public function mapWith(string $class, callable $callback = null)
-    {
-        /** @see \Infira\Collection\extensions\MapWith::mapWith() */;
-    }
+    public function mapWith(string $class, callable $callback = null) {}
 
 
     /**
@@ -180,11 +173,10 @@ class Collection
      * @return static
      * @see \Illuminate\Support\Collection::only()
      * @see \Illuminate\Support\Collection::merge()
+     * @see \Infira\Collection\extensions\MergeOnly::mergeOnly()
+     * @see \Infira\Collection\CollectionMacros::mergeOnly()
      */
-    public function mergeOnly($items, array $keys = null)
-    {
-        /** @see \Infira\Collection\extensions\MergeOnly::mergeOnly() */;
-    }
+    public function mergeOnly($items, array $keys = null) {}
 
 
     /**
@@ -193,11 +185,10 @@ class Collection
      * @return static
      * @see \Illuminate\Support\Collection::pipeInto()
      * @see https://github.com/infira/laravel-collection-extensions/blob/main/docs/pipeIntoSelf.md
+     * @see \Infira\Collection\extensions\PipeIntoSelf::pipeIntoSelf()
+     * @see \Infira\Collection\CollectionMacros::pipeIntoSelf()
      */
-    public function pipeIntoSelf(): static
-    {
-        /** @see \Infira\Collection\extensions\PipeIntoSelf::pipeIntoSelf() */;
-    }
+    public function pipeIntoSelf(): static {}
 
 
     /**
@@ -209,11 +200,11 @@ class Collection
      * @return static
      * @example rename('from-key','to-key')
      * @example rename(['from-key-1'=>'to-key-1', 'from-key-2'=>'to-key-2'])
+     *
+     * @see \Infira\Collection\extensions\Rename::rename()
+     * @see \Infira\Collection\CollectionMacros::rename()
      */
-    public function rename($from, $to = null)
-    {
-        /** @see \Infira\Collection\extensions\Rename::rename() */;
-    }
+    public function rename($from, $to = null) {}
 
 
     /**
@@ -222,9 +213,8 @@ class Collection
      * @template TZipValue
      *
      * @return static<int, static<int, TValue|TZipValue>>
+     * @see \Infira\Collection\extensions\ZipSelf::zipSelf()
+     * @see \Infira\Collection\CollectionMacros::zipSelf()
      */
-    public function zipSelf()
-    {
-        /** @see \Infira\Collection\extensions\ZipSelf::zipSelf() */;
-    }
+    public function zipSelf() {}
 }
