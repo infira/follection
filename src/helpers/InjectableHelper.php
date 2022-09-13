@@ -27,7 +27,7 @@ class InjectableHelper
         }
     }
 
-    public static function make(callable $callback): callable
+    public static function make(callable $callback): \Closure
     {
         $ref = new \ReflectionFunction($callback);
         $types = array_map(static fn(\ReflectionParameter $p) => $p->getType()?->getName(), $ref->getParameters());
