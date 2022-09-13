@@ -79,7 +79,7 @@ class CollectionMacros
 	public static function toInjectable(): \Closure
 	{
 		return function () {
-			return $this->pipeInto(\Infira\Collection\InjectableCollection::class);
+			return new \Infira\Collection\InjectableCollection($this);
 		};
 	}
 

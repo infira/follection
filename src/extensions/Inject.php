@@ -29,6 +29,6 @@ trait Inject
 
     public function toInjectable(): \Infira\Collection\InjectableCollection
     {
-        return $this->pipeInto(\Infira\Collection\InjectableCollection::class);
+        return new \Infira\Collection\InjectableCollection($this);
     }
 }

@@ -18,7 +18,10 @@
   "autoload": {
     "psr-4": {
       "Infira\\Collection\\": "src"
-    }
+    },
+    "files": [
+      "src/helpers/helpers.php"
+    ]
   },
   "license": "MIT",
   "authors": [

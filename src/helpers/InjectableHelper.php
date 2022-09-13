@@ -46,11 +46,17 @@ class InjectableHelper
         return fn(...$params) => $callback(...$cast($params));
     }
 
-    public static function makeIf(mixed $callback): mixed
+    public static function makeIfArray(mixed $callback): mixed
     {
         if (is_array($callback)) {
             return array_map(fn($cb) => static::makeIf($cb), $callback);
         }
+
+        return self::makeIf($callback);
+    }
+
+    public static function makeIf(mixed $callback): mixed
+    {
         if (is_callable($callback)) {
             return static::make($callback);
         }
