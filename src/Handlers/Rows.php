@@ -21,8 +21,4 @@ class Rows extends FollectionTransformer implements IteratorAggregate
     {
         return new RowIterator($this);
     }
-
-    public function getasdasd() : int {
-
-    }
 }
