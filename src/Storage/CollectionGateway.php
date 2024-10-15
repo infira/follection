@@ -856,14 +856,18 @@ abstract class CollectionGateway implements Enumerable, UnderlyingValueByKey, Un
     /**
      * Get one or a specified number of items randomly from the collection.
      *
-     * @param (callable(self<TKey, TValue>): int)|int|null $number
+     * @param int|null $number
      * @return static<int, TValue>|TValue
      *
      * @throws \InvalidArgumentException
      */
     public function random($number = null)
     {
-        throw new NotImplementedException("method('random') is not implemented");
+        $random = $this->kvt()->random(...$this->mapArgumentsItemCallback(func_get_args()));
+        if ($random instanceof LazyCollection) {
+            return $this->follection($random->all());
+        }
+        return $random->transformItem($this);
     }
 
     /**
