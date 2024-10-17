@@ -147,22 +147,16 @@ abstract class FollectionTransformer extends CollectionGateway implements
         }
 
         if ($this->hasAccessor($key)) {
-            $transformed = $this->getAccessorValue($key, $value);
+            $value = $this->getAccessorValue($key, $value);
         }
-        else {
-            if ($transformClass === FollectionItem::class) {
-                $class = $this->itemTransformerClass;
-            }
-            else {
-                $class = $transformClass ?: $this->itemTransformerClass;
-            }
-            $transformed = new $class($value);
-            //$this->debugValue($key, 'itemTransformerClass', $class);
-            //$this->debugValue($key, 'transformed-with-itemClass', $transformed);
-//        if ($transformed instanceof HasAttributes) {
-//            $transformed->setAttribute('relationKey', $key);
-//        }
-        }
+        return $this->transformValue($value, $transformClass);
+    }
+
+    public function transformValue(mixed $value, string $transformClass = null)
+    {
+        $class = $transformClass ?: $this->itemTransformerClass;
+        $transformed = ($value instanceof FollectionItem) ? $value : new $class($value);
+
         if ($transformed instanceof FollectionItem) {
             return $transformed->setParentId($this->getId());
         }
