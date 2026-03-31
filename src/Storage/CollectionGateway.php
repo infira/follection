@@ -302,7 +302,7 @@ abstract class CollectionGateway implements Enumerable, UnderlyingValueByKey, Un
      * @param (callable(TValue, TKey): bool)|null $callback
      * @return static
      */
-    public function filter(callable $callback = null): static
+    public function filter(?callable $callback = null): static
     {
         return $this->follection(
             $this->storage->filter(
@@ -320,7 +320,7 @@ abstract class CollectionGateway implements Enumerable, UnderlyingValueByKey, Un
      * @param TFirstDefault|(Closure(): TFirstDefault) $default
      * @return TValue|TFirstDefault
      */
-    public function first(callable $callback = null, mixed $default = null): mixed
+    public function first(?callable $callback = null, mixed $default = null): mixed
     {
         return $this->kvt()->first($this->makeCallback($callback), $default)?->transformItem($this);
     }
@@ -640,7 +640,7 @@ abstract class CollectionGateway implements Enumerable, UnderlyingValueByKey, Un
      * @param TLastDefault|(Closure(): TLastDefault) $default
      * @return TValue|TLastDefault
      */
-    public function last(callable $callback = null, $default = null)
+    public function last(?callable $callback = null, $default = null)
     {
         return $this->kvt()->last(
             $this->makeCallback($callback),
@@ -1426,7 +1426,7 @@ abstract class CollectionGateway implements Enumerable, UnderlyingValueByKey, Un
      * @param (callable(int): TTimesValue)|null $callback
      * @return static<int, TTimesValue>
      */
-    public static function times($number, callable $callback = null)
+    public static function times($number, ?callable $callback = null)
     {
         throw new NotImplementedException("method('times') is not implemented");
     }
@@ -1701,7 +1701,7 @@ abstract class CollectionGateway implements Enumerable, UnderlyingValueByKey, Un
      * @param (callable($this): TWhenEmptyReturnType)|null $default
      * @return $this|TWhenEmptyReturnType
      */
-    public function whenEmpty(callable $callback, callable $default = null)
+    public function whenEmpty(callable $callback, ?callable $default = null)
     {
         return $this->storage->whenEmpty(...func_get_args());
     }
@@ -1715,7 +1715,7 @@ abstract class CollectionGateway implements Enumerable, UnderlyingValueByKey, Un
      * @param (callable($this): TWhenNotEmptyReturnType)|null $default
      * @return $this|TWhenNotEmptyReturnType
      */
-    public function whenNotEmpty(callable $callback, callable $default = null)
+    public function whenNotEmpty(callable $callback, ?callable $default = null)
     {
         return $this->storage->whenNotEmpty(...func_get_args());
     }
@@ -1729,7 +1729,7 @@ abstract class CollectionGateway implements Enumerable, UnderlyingValueByKey, Un
      * @param (callable($this): TUnlessEmptyReturnType)|null $default
      * @return $this|TUnlessEmptyReturnType
      */
-    public function unlessEmpty(callable $callback, callable $default = null)
+    public function unlessEmpty(callable $callback, ?callable $default = null)
     {
         return $this->storage->unlessEmpty(...func_get_args());
     }
@@ -1743,7 +1743,7 @@ abstract class CollectionGateway implements Enumerable, UnderlyingValueByKey, Un
      * @param (callable($this): TUnlessNotEmptyReturnType)|null $default
      * @return $this|TUnlessNotEmptyReturnType
      */
-    public function unlessNotEmpty(callable $callback, callable $default = null)
+    public function unlessNotEmpty(callable $callback, ?callable $default = null)
     {
         return $this->storage->unlessNotEmpty(...func_get_args());
     }
@@ -2088,7 +2088,7 @@ abstract class CollectionGateway implements Enumerable, UnderlyingValueByKey, Un
      * @param (callable($this, TWhenParameter): TWhenReturnType)|null $default
      * @return $this|TWhenReturnType
      */
-    public function when($value = null, callable $callback = null, callable $default = null)
+    public function when($value = null, ?callable $callback = null, ?callable $default = null)
     {
         return $this->storage->when(...func_get_args());
     }
@@ -2117,13 +2117,13 @@ abstract class CollectionGateway implements Enumerable, UnderlyingValueByKey, Un
      * @param (callable($this, TUnlessParameter): TUnlessReturnType)|null $default
      * @return $this|TUnlessReturnType
      */
-    public function unless($value = null, callable $callback = null, callable $default = null)
+    public function unless($value = null, ?callable $callback = null, ?callable $default = null)
     {
         return $this->storage->unless(...func_get_args());
     }
 
     /** @inheritDoc */
-    public function ok(string|int $key = null): bool
+    public function ok(string|int|null $key = null): bool
     {
         if ($key === null) {
             return ($this->storage->count() > 0);
@@ -2137,12 +2137,12 @@ abstract class CollectionGateway implements Enumerable, UnderlyingValueByKey, Un
     }
 
     /** @inheritDoc */
-    public function notOk(string|int $key = null): bool
+    public function notOk(string|int|null $key = null): bool
     {
         return !$this->ok($key);
     }
 
-    public function debug(string $name = null, bool $asArray = false): void
+    public function debug(?string $name = null, bool $asArray = false): void
     {
         if ($name) {
             debug([$name => $asArray ? $this->toArray() : $this]);
@@ -2152,7 +2152,7 @@ abstract class CollectionGateway implements Enumerable, UnderlyingValueByKey, Un
         }
     }
 
-    public function debugAll(string $name = null): void
+    public function debugAll(?string $name = null): void
     {
         $this->debug($name, true);
     }

@@ -120,7 +120,7 @@ trait CollectionExtras
         return empty($val);
     }
 
-    public function ok(string|int $key = null): bool
+    public function ok(string|int|null $key = null): bool
     {
         if ($key === null) {
             return ($this->count() > 0);
@@ -132,7 +132,7 @@ trait CollectionExtras
         return Is::ok($this->doGetValue($key));
     }
 
-    public function notOk(string|int $key = null): bool
+    public function notOk(string|int|null $key = null): bool
     {
         return !$this->ok($key);
     }

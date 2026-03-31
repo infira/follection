@@ -16,7 +16,7 @@ class Record extends FollectionTransformer
 {
     protected string $itemTransformerClass = Field::class;
 
-    public function transformItem(mixed $value, int|string $key = null, string $transformClass = null): mixed
+    public function transformItem(mixed $value, int|string|null $key = null, ?string $transformClass = null): mixed
     {
         $item = parent::transformItem($value, $key, $transformClass);
         if ($item instanceof FluentValue) {

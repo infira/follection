@@ -125,7 +125,7 @@ abstract class FollectionTransformer extends CollectionGateway implements
         return $value;
     }
 
-    public function transformItem(mixed $value, int|string $key = null, string $transformClass = null): mixed
+    public function transformItem(mixed $value, int|string|null $key = null, ?string $transformClass = null): mixed
     {
         if ($key === null) {
             throw new RuntimeException('cant save item to storage');
@@ -152,7 +152,7 @@ abstract class FollectionTransformer extends CollectionGateway implements
         return $this->transformValue($value, $transformClass);
     }
 
-    public function transformValue(mixed $value, string $transformClass = null)
+    public function transformValue(mixed $value, ?string $transformClass = null)
     {
         $class = $transformClass ?: $this->itemTransformerClass;
         $transformed = ($value instanceof FollectionItem) ? $value : new $class($value);
